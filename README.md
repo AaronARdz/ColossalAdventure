@@ -1,0 +1,1 @@
+Testing hashmaps with adventure game, similar to Colossal Cave Adenture 1976
