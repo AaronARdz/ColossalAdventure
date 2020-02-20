@@ -10,28 +10,34 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        locations.put(0,new Location(0,"You are in a simulation"));
-        locations.put(1,new Location(1,"You are in front of a computer"));
-        locations.put(2,new Location(2,"You are in school"));
-        locations.put(3,new Location(3,"You are in the stadium"));
-        locations.put(4,new Location(4,"You are with your girlfriend at the movies"));
-        locations.put(5,new Location(5,"At the lucha libre"));
-
-        locations.get(1).addExit("W", 2);
-        locations.get(1).addExit("E", 3);
-        locations.get(1).addExit("S", 4);
-        locations.get(1).addExit("N", 5);
-
-        locations.get(2).addExit("N", 5);
-
-        locations.get(3).addExit("W", 1);
+        Map<String, Integer> tempExit = new HashMap<>();
+        locations.put(0,new Location(0,"You are in a simulation",tempExit));
 
 
-        locations.get(4).addExit("N", 1);
-        locations.get(4).addExit("Q", 2);
+        tempExit = new HashMap<>();
+        tempExit.put("W", 2);
+        tempExit.put("E", 3);
+        tempExit.put("S", 4);
+        tempExit.put("N", 5);
+        locations.put(1,new Location(1,"You are in front of a computer",tempExit));
 
-        locations.get(5).addExit("S", 1);
-        locations.get(5).addExit("W", 2);
+        tempExit = new HashMap<>();
+        tempExit.put("N", 5);
+        locations.put(2,new Location(2,"You are in school",tempExit));
+
+        tempExit = new HashMap<>();
+        tempExit.put("W", 1);
+        locations.put(3,new Location(3,"You are in the stadium",tempExit));
+
+        tempExit = new HashMap<>();
+        tempExit.put("N", 1);
+        tempExit.put("Q", 2);
+        locations.put(4,new Location(4,"You are with your girlfriend at the movies",tempExit));
+
+        tempExit = new HashMap<>();
+        tempExit.put("S", 1);
+        tempExit.put("W", 2);
+        locations.put(5,new Location(5,"At the lucha libre",tempExit));
 
         Map<String,String> vocabulary = new HashMap<>();
         vocabulary.put("QUIT", "Q");
@@ -44,6 +50,7 @@ public class Main {
         int loc = 1;
         while(true){
             System.out.println(locations.get(loc).getDescription());
+            tempExit.remove("S");
             if (loc == 5){
                 break;
             }
